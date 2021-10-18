@@ -15,7 +15,14 @@ class HomeController extends Controller
             //echo "I am login action in AuthController";
             $status=$request->session()->get('status', '');
             $user = Users::where(['username'=>$request->session()->get('username')])->first();
-            $moodleUrl="http://moodle.localhost.com/create-login.php?firstname=".$user->name."&lastname=LastName&email=".$user->email."&username=".$user->username.'_'.$user->school_code.'_'.$user->class_code;
+            $arrParams=array(
+                "firstname" => $user->name,
+                "lastname" => "LastName",
+                "email" => $user->email,
+                "username" => $user->username.'_'.$user->school_code.'_'.$user->class_code
+            );
+            $jsonPayload=base64_encode(json_encode($arrParams));
+            $moodleUrl="http://moodle.localhost.com/autologin.php?enc_pl=".$jsonPayload;
             return view('home.dashboard', ['status' => $status, 'moodleUrl'=>$moodleUrl]);
         }
     }

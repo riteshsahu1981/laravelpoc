@@ -1,7 +1,21 @@
 @extends('layouts.app')
 @section('title', 'Login')
 @section('content')
-{{$status}}
+@if ($status == "logout")
+    <script type="text/javascript">
+        //window.open("http://moodle.localhost.com/login/logout.php");
+
+
+        // window.onload = function(){
+        //     window.open("http://moodle.localhost.com/login/logout.php");
+        // };
+
+    </script>
+    You have been loggedout successfully.
+@else
+    {{$status}}
+@endif
+
 <form method="POST" action="/authenticate">
     @csrf
    <label for="username">Username</label>

@@ -18,7 +18,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $request->session()->flush();
-        $request->session()->flash('status', 'You have been loggedout successfully');
+        $request->session()->flash('status', 'logout');
         return redirect('/login');
     }
     public function authenticate(Request $request)
@@ -30,13 +30,15 @@ class AuthController extends Controller
         $user = Users::where(['username'=>$username])->first();
         if(is_null($user)){
             $request->session()->flash('status', 'Invalid Username.');
+            return redirect('/login');
         }else if(Hash::check($password, $user->password)) {
             $request->session()->put('username', $user->username);
             $request->session()->flash('status', 'You have loggedin successfully');
             return redirect('/');
-        }else{
-            $request->session()->flash('status', 'Invalid Password.');
         }
+        $request->session()->flash('status', 'Invalid Password.');
+        return redirect('/login');
+
 
 
     }
