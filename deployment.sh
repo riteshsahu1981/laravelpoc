@@ -1,5 +1,5 @@
 #!/bin/sh
-cd /var/www/html/laravelpoc_build/
+cd /home/ubuntu/laravelpoc_build/
 git stash
 git pull --no-edit
 chmod -R 755 /home/ubuntu/laravelpoc_build/
