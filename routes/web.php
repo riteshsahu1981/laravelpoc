@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@dashboard');
+Route::get('/autologin', 'HomeController@autologin');
 Route::get('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
 Route::post('/authenticate', 'AuthController@authenticate');
+Route::post('/auth/autologout', 'AuthController@autologout');
