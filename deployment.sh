@@ -7,4 +7,4 @@ rsync -avzh /var/www/html/laravelpoc_build/ /var/www/html/laravelpoc/
 
 cd /var/www/html/laravelpoc/
 php artisan migrate
-echo "Deployment Done."
+echo "Deployment Done..."
